@@ -5,6 +5,7 @@ import com.learnJava.data.StudentDataBase;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class ConsumerExample {
 
@@ -12,7 +13,13 @@ public class ConsumerExample {
 
     static Consumer<Student>  c2= p -> System.out.print(p.getName().toUpperCase());
 
+    static Function<String, String> c45= s -> s.toUpperCase();
+
+
     static Consumer<Student>  c3= p -> System.out.println(p.getActivities());
+
+    static Consumer<Student> c4 = p -> System.out.println(p.getGpa());
+
 
 
     public static void printName(){
@@ -26,7 +33,7 @@ public class ConsumerExample {
     public static void printNameAndActivities(){
         System.out.println("printNameAndActivities : ");
         List<Student> personList = StudentDataBase.getAllStudents();
-        personList.forEach(c2.andThen(c3));
+        personList.forEach(c4.andThen(c3));
     }
 
     public static void printNameAndActivitiesUsingCondition(){
@@ -42,6 +49,7 @@ public class ConsumerExample {
     public static void main(String[] args) {
 
         Consumer<String> c1 = (s) -> System.out.println(s.toUpperCase());
+        System.out.println(c45.apply("test"));
 
         c1.accept("java8");
 
