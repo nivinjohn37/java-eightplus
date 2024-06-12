@@ -25,7 +25,6 @@ public class ConsumerExample {
     public static void printName(){
 
         List<Student> personList = StudentDataBase.getAllStudents();
-
         personList.forEach(c1);
 
     }
