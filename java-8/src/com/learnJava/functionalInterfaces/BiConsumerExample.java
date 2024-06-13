@@ -18,6 +18,19 @@ public class BiConsumerExample {
         List<Student> students = StudentDataBase.getAllStudents();
 
         students.forEach((s) -> studentBiConsumer.accept(s.getName(),s.getActivities()));
+
+        BiConsumer<String, List<String>> studentGradeBiConsumer = (name, activities) -> {
+            int totalAct = activities.size();
+            System.out.println("Name : " + name + ": Activities : " + totalAct);
+
+        };
+        students.forEach((s) ->studentGradeBiConsumer.accept(s.getName(), s.getActivities()));
+        System.out.println("---------------");
+        students.forEach(student -> {
+           int totalAct = student.getActivities().size();
+            System.out.println("Name : " + student.getName() + ": Activities : " + totalAct);
+
+        });
     }
 
     public static void main(String[] args) {
@@ -30,6 +43,10 @@ public class BiConsumerExample {
 
         BiConsumer<Integer, Integer> multiply = (a,b) -> {
             System.out.println("Multiplication : " + (a * b));
+        };
+
+        BiConsumer<String, Integer> test = (a,b) ->{
+            System.out.println("a : " + a + " b : " + b * 50);
         };
 
 
@@ -45,6 +62,8 @@ public class BiConsumerExample {
         multiply.andThen(addition).andThen(division).accept(10,5);
 
 
+
+        test.accept("abcd", 11);
         nameAndActivities();
 
     }

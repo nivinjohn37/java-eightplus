@@ -21,6 +21,11 @@ public class PredicateStudentExample {
     public static void main(String[] args) {
 
         List<Student> studentList = StudentDataBase.getAllStudents();
+        System.out.println("Test1111");
+        studentList = studentList.stream().filter(s-> s.getActivities().size() > 1).toList();
+        studentList.forEach(s-> System.out.println(s.getName()+":"+s.getActivities().size()));
+
+
 
         studentList.stream()
                 .filter(PredicateStudentExample.p1)
